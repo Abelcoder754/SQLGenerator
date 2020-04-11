@@ -1,10 +1,11 @@
 class Commands(object):
-    data1: dict
-    data2: dict
-    data3: dict
+    """This class has the possible commands that can be used to generate a sql command"""
+    _data1: dict
+    _data2: dict
+    _data3: dict
 
     def __init__(self):
-        self.data1 = {
+        self._data1 = {
             0:"CREATE ",
             1:"SELECT ",
             3:"UPDATE ",
@@ -13,7 +14,7 @@ class Commands(object):
             6:"WHERE ",
             7:"VALUES " 
         }
-        self.data2 = {
+        self._data2 = {
             0:"AND ",
             1:"OR ",
             2:"SET ",
@@ -23,7 +24,7 @@ class Commands(object):
             6:"JOIN ",
             7:"AS "
         }
-        self.data3 = {
+        self._data3 = {
             0:"(",
             1:")",
             2:";",
@@ -32,4 +33,19 @@ class Commands(object):
             5:"=",
             6:"?"
         }
+    
+    def getData1(self,idx:int):
+        if idx < 0 or idx >= self._data1.__len__():
+            return None
+        return self._data1.__getitem__(idx)
+
+    def getData2(self,idx:int):
+        if idx < 0 or idx >= self._data2.__len__():
+            return None
+        return self._data2.__getitem__(idx)
+    
+    def getData3(self,idx:int):
+        if idx < 0 or idx >= self._data3.__len__():
+            return None
+        return self._data3.__getitem__(idx)
 
