@@ -40,6 +40,38 @@ class Generate(Commands):
             )
             self.runListWhere(where)
         return self.getCommand()
+    
+    # insert part 
+
+    def generateInsertCommand(self,data:list,table:str):
+        self.cleanCommand()
+        self.setCommand(
+            self.getData1(8)+
+            self.getData1(9)+
+            table+" "+self.getData3(0)
+        )
+        self.runListData(data)
+        self.setCommand(
+            self.getCommand()+
+            self.getData3(1)+" "+
+            self.getData1(7)+
+            self.getData3(0)
+        )
+        for i in range(data.__len__()):
+            self.setCommand(
+                self.getCommand()+
+                self.getData3(6)
+            )
+            if i == data.__len__():
+                break
+            self.setCommand(
+                self.getCommand()+
+                self.getData3(3)
+            )
+        self.setCommand(
+            self.getCommand()+self.getData1(1)+self.getData3(2)
+        )
+        return self.getCommand()
 
     # anothers tools
 

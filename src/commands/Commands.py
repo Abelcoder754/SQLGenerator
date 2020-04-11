@@ -12,7 +12,9 @@ class Commands(object):
             4:"DELETE ",
             5:"FROM ",
             6:"WHERE ",
-            7:"VALUES " 
+            7:"VALUES ",
+            8:"INSERT ",
+            9:"INTO "
         }
         self._data2 = {
             0:"AND ",
