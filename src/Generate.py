@@ -73,6 +73,35 @@ class Generate(Commands):
         )
         return self.getCommand()
 
+    # update part
+    
+    def generateUpdateCommand(self,table:str,data:list,where:list):
+        self.cleanCommand()
+        self.setCommand(
+            self.getData1(3)+
+            table+" "+
+            self.getData2(2)
+        )
+        for i in range(data.__len__()):
+            self.setCommand(
+                self.getCommand()+
+                data.__getitem__(i)+
+                self.getData3(5)+
+                self.getData3(6)
+            )
+            if i == data.__len__():
+                break
+            self.setCommand(
+                self.getCommand()+
+                self.getData3(3)+" "
+            )
+        self.setCommand(
+            self.getCommand()+" "+
+            self.getData1(6)
+        )
+        self.runListWhere(where)
+        return self.getCommand()
+
     # anothers tools
 
     def runListWhere(self,thelist:list):

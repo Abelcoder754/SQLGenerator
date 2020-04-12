@@ -6,8 +6,9 @@ class Commands(object):
 
     def __init__(self):
         self._data1 = {
-            0:"CREATE ",
+            0:"TABLE ",
             1:"SELECT ",
+            2:"CREATE ",
             3:"UPDATE ",
             4:"DELETE ",
             5:"FROM ",
