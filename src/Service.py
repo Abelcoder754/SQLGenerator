@@ -9,14 +9,20 @@ class Service:
     
     def validateSelect(self,data:list,table:str,where:list,cond:list):
         if self.isEmptyStr(table):
-            return False
+            return None
         self.getGenerator().generateSelectCommand(table,data,where,cond)
         return self.getGenerator().getCommand()
     
     def validadeUpdate(self,data:list,table:str,where:list,cond:list):
         if self.isEmptyStr(table):
-            return False
+            return None
         self.getGenerator().generateUpdateCommand(table,data,where,cond)
+        return self.getGenerator().getCommand()
+
+    def validateInsert(self,table:list,data:list):
+        if self.isEmptyStr(table) or data.__len__() == 0:
+            return None
+        self.getGenerator().generateInsertCommand(data,table)
         return self.getGenerator().getCommand()
 
     def isEmptyStr(self,table:str):
