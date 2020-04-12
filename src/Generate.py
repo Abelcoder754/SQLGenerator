@@ -10,7 +10,7 @@ class Generate(Commands):
     
     # select part
 
-    def generateSelectCommand(self,table:str,data:list,where:list):
+    def generateSelectCommand(self,table:str,data:list,where:list,cond:list):
         self.cleanCommand()
         self.setCommand(  # basic command header # select
             self.getData1(1)
@@ -31,14 +31,14 @@ class Generate(Commands):
                 self.getData1(5)+
                 table+" "+self.getData1(6)
             )
-            self.runListWhere(where)
+            self.runListWhere(where,cond)
         else:
             self.runListData(data)
             self.setCommand(
                 " "+self.getData1(5)+
                 table+" "+self.getData1(6)
             )
-            self.runListWhere(where)
+            self.runListWhere(where,cond)
         return self.getCommand()
     
     # insert part 
@@ -75,7 +75,7 @@ class Generate(Commands):
 
     # update part
     
-    def generateUpdateCommand(self,table:str,data:list,where:list):
+    def generateUpdateCommand(self,table:str,data:list,where:list,cond:list):
         self.cleanCommand()
         self.setCommand(
             self.getData1(3)+
@@ -99,25 +99,22 @@ class Generate(Commands):
             self.getCommand()+" "+
             self.getData1(6)
         )
-        self.runListWhere(where)
+        self.runListWhere(where,cond)
         return self.getCommand()
 
     # anothers tools
 
-    def runListWhere(self,thelist:list):
-        i = 0
+    def runListWhere(self,thelist:list,cond:list):
+        i = j = 0
         while True:
             self.setCommand(
                 self.getCommand()+
-                thelist.__getitem__(i)
-            )
-            self.setCommand(
-                self.getCommand()+
+                thelist.__getitem__(i)+
                 self.getData3(5)+
                 self.getData3(6)
             )
             i += 1
-            if thelist.__len__().__eq__(i):
+            if i == thelist.__len__():
                 self.setCommand(
                     self.getCommand()+
                     self.getData3(2)
@@ -125,9 +122,16 @@ class Generate(Commands):
                 break
             else:
                 self.setCommand(
-                    self.getCommand()+
-                    self.getData3(3)+" "
+                    self.getCommand()+" "
                 )
+            self.setCommand(
+                self.getCommand()+
+                cond.__getitem__(j)+
+                self.getData3(5)+
+                self.getData3(6)
+            )
+            j += 1
+            
 
     def runListData(self,thelist:list):
         i = 0

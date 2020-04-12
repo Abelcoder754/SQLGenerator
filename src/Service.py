@@ -7,11 +7,17 @@ class Service:
     def __init__(self):
         self._generate = Generate
     
-    def validateSelect(self,data:list,table:str,where:list):
+    def validateSelect(self,data:list,table:str,where:list,cond:list):
         if self.isEmptyStr(table):
             return False
-        self.getGenerator().generateSelectCommand(table,data,where)
-        return self.getGenerator()
+        self.getGenerator().generateSelectCommand(table,data,where,cond)
+        return self.getGenerator().getCommand()
+    
+    def validadeUpdate(self,data:list,table:str,where:list,cond:list):
+        if self.isEmptyStr(table):
+            return False
+        self.getGenerator().generateUpdateCommand(table,data,where,cond)
+        return self.getGenerator().getCommand()
 
     def isEmptyStr(self,table:str):
         return table.__len__() < 1
