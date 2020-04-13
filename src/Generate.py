@@ -102,6 +102,19 @@ class Generate(Commands):
         self.runListWhere(where,cond)
         return self.getCommand()
 
+    # delete part
+    
+    def generateDeleteCommand(self,table:str,where:list,cond:list):
+        self.cleanCommand()
+        self.setCommand(
+            self.getData1(4)+
+            self.getData1(5)+
+            table+" "+
+            self.getData1(6)
+        )
+        self.runListWhere(where,cond)
+        return self.getCommand()
+    
     # anothers tools
 
     def runListWhere(self,thelist:list,cond:list):

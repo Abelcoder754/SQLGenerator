@@ -24,6 +24,12 @@ class Service:
             return None
         self.getGenerator().generateInsertCommand(data,table)
         return self.getGenerator().getCommand()
+    
+    def validadeDelete(self,table:str,where:list,cond:list):
+        if self.isEmptyStr(table) or where.__len__() == 0:
+            return None
+        self.getGenerator().generateDeleteCommand(table,where,cond)
+        return self.getGenerator().getCommand()
 
     def isEmptyStr(self,table:str):
         return table.__len__() < 1
